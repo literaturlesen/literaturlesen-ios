@@ -1,0 +1,6 @@
+
+/* Class = "UIButton"; accessibilityHint = "Benutzen Sie diesen Button um in die literaturlesen-App zurück zu kehren."; ObjectID = "gTv-Ge-Duc"; */
+"gTv-Ge-Duc.accessibilityHint" = "Benutzen Sie diesen Button um in die literaturlesen-App zurück zu kehren.";
+
+/* Class = "UIButton"; accessibilityLabel = "Zurück zur literaturlesen-App"; ObjectID = "gTv-Ge-Duc"; */
+"gTv-Ge-Duc.accessibilityLabel" = "Zurück zur literaturlesen-App";
