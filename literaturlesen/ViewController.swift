@@ -19,7 +19,8 @@ class ViewController: UIViewController, WKScriptMessageHandler, WKNavigationDele
     
     override func viewDidLoad() {
         
-        self.baseURL =  "https://app.literaturlesen.com"
+        //self.baseURL =  "https://app.literaturlesen.com";
+        self.baseURL =  "https://app.literaturlesen.com";
         self.apppage =  self.baseURL;
         let appdelegate = UIApplication.shared.delegate as! AppDelegate;
         if( appdelegate.sharedURL ?? "" != "" )
@@ -93,10 +94,12 @@ class ViewController: UIViewController, WKScriptMessageHandler, WKNavigationDele
             case "update":
                 //Löschen des Caches, wenn eine Aktualisierung statt findet
                 print("Aktualisiere App auf Version "+String(commandcombination[1]));
+                appalert("Aktualisierung", msg:"Aktualisiere App auf Version "+String(commandcombination[1]) );
                 WKWebsiteDataStore.default().fetchDataRecords(ofTypes: WKWebsiteDataStore.allWebsiteDataTypes()) { records in
                     records.forEach { record in
                         
                         var types: Set <String> = record.dataTypes;
+                        print("Lösche "+record.dataTypes.joined(separator: ",") )
                         types.remove("WKWebsiteDataTypeLocalStorage");
                         WKWebsiteDataStore.default().removeData(ofTypes: types, for: [record], completionHandler: {})
                     }
@@ -108,6 +111,23 @@ class ViewController: UIViewController, WKScriptMessageHandler, WKNavigationDele
                 
             }
         }
+    }
+
+    /**
+     * Öffnet eine Alert-Box
+     */
+    public func appalert(_ title:String, msg:String)
+    {
+        // Create new Alert
+        let dialogMessage = UIAlertController(title: title, message: msg, preferredStyle: .alert)
+        
+        
+        let ok = UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in
+            //
+        })       
+        
+        dialogMessage.addAction(ok)
+        self.present(dialogMessage, animated: true, completion: nil)
     }
     
     public func webViewDidFinishLoad(_ webView: WKWebView) {
